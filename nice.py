@@ -16,7 +16,24 @@ AWESOMENESS = [
 def start_here():
     """Home page."""
 
-    return "Hi! This is the home page."
+    return """
+    <!doctype html>
+    <html>
+      <head>
+        <title>Hi There!</title>
+      </head>
+      <body>
+        <h1>Hi There!</h1>
+        This is our home page. Would you like to be <a href="http://localhost:5000/hello">greeted?</a>
+
+
+      </body>
+    </html>
+    """
+
+
+
+    # return " Hi! This is the home page."
 
 
 @app.route('/hello')
@@ -27,13 +44,34 @@ def say_hello():
     <!doctype html>
     <html>
       <head>
-        <title>Hi There!</title>
+        <title>hello</title>
       </head>
       <body>
         <h1>Hi There!</h1>
         <form action="/greet">
           <label>What's your name? <input type="text" name="person"></label>
+          <form action="/greet">
+          How would you describe yourself?:
+            <select name="compliment">
+              <option value=''></option> 
+              <option value='awesome'>Awesome</option> 
+              <option value='terrific'>Terrific</option> 
+              <option value='fantastic'>Fantastic</option> 
+              <option value='neato'>Neato</option> 
+              <option value='fantabulous'>Fantabulous</option> 
+              <option value='wowza'>Wowza</option> 
+              <option value='oh-so-not-meh'>Oh-so-not-meh</option> 
+              <option value='brilliant'>Brilliant</option> 
+              <option value='ducky'>Ducky</option> 
+              <option value='coolio'>Coolio</option> 
+              <option value='incredible'>Incredible</option> 
+              <option value='wonderful'>Wonderful</option> 
+              <option value='smashing'>Smashing</option> 
+              <option value='lovely'>Lovely</option> 
           <input type="submit">
+        </form>
+
+
         </form>
       </body>
     </html>
@@ -45,8 +83,9 @@ def greet_person():
     """Get user by name."""
 
     player = request.args.get("person")
+    compliment = request.args.get("compliment")
 
-    compliment = choice(AWESOMENESS)
+    # compliment = choice(AWESOMENESS)
 
     return """
     <!doctype html>
@@ -59,7 +98,6 @@ def greet_person():
       </body>
     </html>
     """ % (player, compliment)
-
 
 if __name__ == '__main__':
     # debug=True gives us error messages in the browser and also "reloads"
